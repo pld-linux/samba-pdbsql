@@ -5,7 +5,7 @@
 Summary:	Samba pdbsql
 Name:		samba-pdbsql
 Version:	0.1
-Release:	0.1
+Release:	0.2
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
@@ -14,6 +14,7 @@ Source0:	http://dl.sourceforge.net/pdbsql/pdbsql-%{version}-samba_%{_samba_ver}.
 Patch0:		%{name}-build.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	samba-devel
 URL:		http://pdbsql.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,7 +58,7 @@ Wtyczka Samby do przechowywania hase³ w bazie PostgreSQL.
 %{__autoconf}
 %{__autoheader}
 %configure \
-	--with-samba-dir=%{_builddir}/samba-3.0.23a
+	--with-samba-dir=%{_includedir}/samba
 %{__make}
 
 %install
