@@ -1,11 +1,8 @@
-# TODO
-# - use samba-devel
-# - do sth with /usr/lib/samba/pdb/multi.so ?
 %define		_samba_ver	3.0.23
 Summary:	Samba pdbsql
 Name:		samba-pdbsql
 Version:	0.1
-Release:	0.2
+Release:	0.3
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
@@ -49,6 +46,14 @@ Samba PostgreSQL password database plugin.
 %description -n samba-pdb-pgsql -l pl
 Wtyczka Samby do przechowywania hase³ w bazie PostgreSQL.
 
+%package -n samba-pdb-multi
+Summary:	Samba backend which loads multiple passdb backends
+Group:		Networking/Daemons
+Requires:	samba >= 1:%{_samba_ver}
+
+%description -n samba-pdb-multi
+Samba backend which loads multiple passdb backends.
+
 %prep
 %setup -q -n pdbsql-%{version}-samba_%{_samba_ver}
 %patch0 -p1
@@ -76,3 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n samba-pdb-pgsql
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/pdb/pgsql.so
+
+%files -n samba-pdb-multi
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/pdb/multi.so
