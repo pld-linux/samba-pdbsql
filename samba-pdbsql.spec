@@ -1,0 +1,77 @@
+# TODO
+# - use samba-devel
+# - do sth with /usr/lib/samba/pdb/multi.so ?
+%define		_samba_ver	3.0.23
+Summary:	Samba pdbsql
+Name:		samba-pdbsql
+Version:	0.1
+Release:	0.1
+Epoch:		2
+License:	GPL v2
+Group:		Networking/Daemons
+Source0:	http://dl.sourceforge.net/pdbsql/pdbsql-%{version}-samba_%{_samba_ver}.tar.bz2
+# Source0-md5:	52b18a8d18eac908d2c06b250c269eb3
+Patch0:		%{name}-build.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+URL:		http://pdbsql.sourceforge.net/
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_libdir	%{_prefix}/%{_lib}/samba
+
+%description
+As of release 3.0.23, support for MySQL and PostGreSQL passdb backends
+has been removed from the Samba tree, due to the lack of active
+maintainer. We now provide this here as an external module for samba.
+
+%package -n samba-pdb-mysql
+Summary:	Samba MySQL password database plugin
+Summary(pl):	Wtyczka Samby do przechowywania hase³ w bazie MySQL
+Group:		Networking/Daemons
+Requires:	samba >= 1:%{_samba_ver}
+
+%description -n samba-pdb-mysql
+Samba MySQL password database plugin.
+
+%description -n samba-pdb-mysql -l pl
+Wtyczka Samby do przechowywania hase³ w bazie MySQL.
+
+%package -n samba-pdb-pgsql
+Summary:	Samba PostgreSQL password database plugin
+Summary(pl):	Wtyczka Samby do przechowywania hase³ w bazie PostgreSQL
+Group:		Networking/Daemons
+Requires:	samba >= 1:%{_samba_ver}
+
+%description -n samba-pdb-pgsql
+Samba PostgreSQL password database plugin.
+
+%description -n samba-pdb-pgsql -l pl
+Wtyczka Samby do przechowywania hase³ w bazie PostgreSQL.
+
+%prep
+%setup -q -n pdbsql-%{version}-samba_%{_samba_ver}
+%patch0 -p1
+
+%build
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%configure \
+	--with-samba-dir=%{_builddir}/samba-3.0.23a
+%{__make}
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files -n samba-pdb-mysql
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/pdb/mysql.so
+
+%files -n samba-pdb-pgsql
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/pdb/pgsql.so
