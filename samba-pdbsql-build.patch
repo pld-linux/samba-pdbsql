@@ -9,9 +9,16 @@
  
  all: $(addsuffix .$(SHLIBEXT), $(modules))
  
---- pdbsql-0.1-samba_3.0.23/configure.in~	2006-06-14 23:18:54.000000000 +0300
-+++ pdbsql-0.1-samba_3.0.23/configure.in	2006-07-25 11:23:19.876700234 +0300
-@@ -41,10 +41,7 @@
+--- pdbsql-0.1-samba_3.0.23/configure.in	2006-07-25 11:23:19.876700234 +0300
++++ pdbsql-0.1-samba_3.0.23/configure.in	2006-07-25 11:52:43.626364490 +0300
+@@ -36,15 +36,14 @@
+  	SOURCEDIR="$SOURCEDIR/source"
+ else if test -f "$SOURCEDIR/dynconfig.c"; then
+ 	SOURCEDIR="$SOURCEDIR"
++elif test -f "$SOURCEDIR/includes.h"; then
++	SOURCEDIR="$SOURCEDIR"
+      else 
+ 	AC_MSG_ERROR([Unable to find Samba sources in $SOURCEDIR. Please specify correct value to --with-samba-dir=])
    fi
  fi
  
