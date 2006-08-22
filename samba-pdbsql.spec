@@ -3,7 +3,7 @@ Summary:	Samba pdbsql - *SQL passdb backends
 Summary(pl):	Samba pdbsql - backendy *SQL dla passdb
 Name:		samba-pdbsql
 Version:	0.1
-Release:	0.3
+Release:	1
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
