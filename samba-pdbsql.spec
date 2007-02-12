@@ -1,6 +1,6 @@
 %define		_samba_ver	3.0.23
 Summary:	Samba pdbsql - *SQL passdb backends
-Summary(pl):	Samba pdbsql - backendy *SQL dla passdb
+Summary(pl.UTF-8):   Samba pdbsql - backendy *SQL dla passdb
 Name:		samba-pdbsql
 Version:	0.1
 Release:	2
@@ -23,47 +23,47 @@ As of release 3.0.23, support for MySQL and PostgreSQL passdb backends
 has been removed from the Samba tree, due to the lack of active
 maintainer. We now provide this here as an external module for samba.
 
-%description -l pl
-Wraz z wydaniem 3.0.23 backendy MySQL i PostgreSQL dla passdb zosta³y
-usuniête z drzewa Samby ze wzglêdu na brak aktywnego maintainera. Ten
-pakiet udostêpnia je jako zewnêtrzne modu³y dla pakietu samba.
+%description -l pl.UTF-8
+Wraz z wydaniem 3.0.23 backendy MySQL i PostgreSQL dla passdb zostaÅ‚y
+usuniÄ™te z drzewa Samby ze wzglÄ™du na brak aktywnego maintainera. Ten
+pakiet udostÄ™pnia je jako zewnÄ™trzne moduÅ‚y dla pakietu samba.
 
 
 %package -n samba-pdb-mysql
 Summary:	Samba MySQL password database plugin
-Summary(pl):	Wtyczka Samby do przechowywania hase³ w bazie MySQL
+Summary(pl.UTF-8):   Wtyczka Samby do przechowywania haseÅ‚ w bazie MySQL
 Group:		Networking/Daemons
 Requires:	samba >= 1:%{_samba_ver}
 
 %description -n samba-pdb-mysql
 Samba MySQL password database plugin.
 
-%description -n samba-pdb-mysql -l pl
-Wtyczka Samby do przechowywania hase³ w bazie MySQL.
+%description -n samba-pdb-mysql -l pl.UTF-8
+Wtyczka Samby do przechowywania haseÅ‚ w bazie MySQL.
 
 %package -n samba-pdb-pgsql
 Summary:	Samba PostgreSQL password database plugin
-Summary(pl):	Wtyczka Samby do przechowywania hase³ w bazie PostgreSQL
+Summary(pl.UTF-8):   Wtyczka Samby do przechowywania haseÅ‚ w bazie PostgreSQL
 Group:		Networking/Daemons
 Requires:	samba >= 1:%{_samba_ver}
 
 %description -n samba-pdb-pgsql
 Samba PostgreSQL password database plugin.
 
-%description -n samba-pdb-pgsql -l pl
-Wtyczka Samby do przechowywania hase³ w bazie PostgreSQL.
+%description -n samba-pdb-pgsql -l pl.UTF-8
+Wtyczka Samby do przechowywania haseÅ‚ w bazie PostgreSQL.
 
 %package -n samba-pdb-multi
 Summary:	Samba backend which loads multiple passdb backends
-Summary(pl):	Backend Samby wczytuj±cy wiele backendów passdb
+Summary(pl.UTF-8):   Backend Samby wczytujÄ…cy wiele backendÃ³w passdb
 Group:		Networking/Daemons
 Requires:	samba >= 1:%{_samba_ver}
 
 %description -n samba-pdb-multi
 Samba backend which loads multiple passdb backends.
 
-%description -n samba-pdb-multi -l pl
-Backend Samby wczytuj±cy wiele backendów passdb.
+%description -n samba-pdb-multi -l pl.UTF-8
+Backend Samby wczytujÄ…cy wiele backendÃ³w passdb.
 
 %prep
 %setup -q -n pdbsql-%{version}-samba_%{_samba_ver}
