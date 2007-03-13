@@ -10,12 +10,9 @@ Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/pdbsql/pdbsql-%{version}-samba-%{_samba_ver}.tar.bz2
 # Source0-md5:	e2d1b65e1ae6097de58fa9709ca45ddc
 Patch0:		%{name}-build.patch
-BuildRequires:	acl-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libnscd-devel
 BuildRequires:	samba-devel
-BuildRequires:	valgrind
 URL:		http://pdbsql.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
