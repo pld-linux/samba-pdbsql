@@ -2,17 +2,20 @@
 Summary:	Samba pdbsql - *SQL passdb backends
 Summary(pl.UTF-8):	Samba pdbsql - backendy *SQL dla passdb
 Name:		samba-pdbsql
-Version:	0.1
-Release:	2
+Version:	0.2
+Release:	1
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/pdbsql/pdbsql-%{version}-samba_%{_samba_ver}.tar.bz2
-# Source0-md5:	52b18a8d18eac908d2c06b250c269eb3
+Source0:	http://dl.sourceforge.net/pdbsql/pdbsql-%{version}-samba-%{_samba_ver}.tar.bz2
+# Source0-md5:	e2d1b65e1ae6097de58fa9709ca45ddc
 Patch0:		%{name}-build.patch
+BuildRequires:	acl-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libnscd-devel
 BuildRequires:	samba-devel
+BuildRequires:	valgrind
 URL:		http://pdbsql.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -66,7 +69,7 @@ Samba backend which loads multiple passdb backends.
 Backend Samby wczytujący wiele backendów passdb.
 
 %prep
-%setup -q -n pdbsql-%{version}-samba_%{_samba_ver}
+%setup -q -n pdbsql-%{version}-samba-%{_samba_ver}
 %patch0 -p1
 
 %build
@@ -87,10 +90,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n samba-pdb-mysql
 %defattr(644,root,root,755)
+%doc docs/mysql.dump docs/smb.conf.mysql
 %attr(755,root,root) %{_libdir}/pdb/mysql.so
 
 %files -n samba-pdb-pgsql
 %defattr(644,root,root,755)
+%doc docs/pgsql.dump docs/smb.conf.pgsql
 %attr(755,root,root) %{_libdir}/pdb/pgsql.so
 
 %files -n samba-pdb-multi
