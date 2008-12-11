@@ -1,18 +1,25 @@
-%define		_samba_ver	3.0.23
+#
+# TODO:
+# - don't use samba sources, use some samba-devel packages
+#
+%define		_samba_ver	3.2.0
 Summary:	Samba pdbsql - *SQL passdb backends
 Summary(pl.UTF-8):	Samba pdbsql - backendy *SQL dla passdb
 Name:		samba-pdbsql
-Version:	0.2
-Release:	1
+%define	snap	rc1
+Version:	0.4
+Release:	0.%{snap}.1
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/pdbsql/pdbsql-%{version}-samba-%{_samba_ver}.tar.bz2
-# Source0-md5:	e2d1b65e1ae6097de58fa9709ca45ddc
+Source0:	http://dl.sourceforge.net/pdbsql/pdbsql_32-%{version}-%{snap}.tar.bz2
+# Source0-md5:	235254e18a78ad9395fd8d54aa6f6da7
+Source1:	http://www.samba.org/samba/ftp/samba-3.2.5.tar.gz
+# Source1-md5: 0f7539e09803ae60a2912e70adf1c747
 Patch0:		%{name}-build.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	samba-devel
+BuildRequires:	samba-devel >= %{_samba_ver}
 URL:		http://pdbsql.sourceforge.net/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -66,15 +73,23 @@ Samba backend which loads multiple passdb backends.
 Backend Samby wczytujący wiele backendów passdb.
 
 %prep
-%setup -q -n pdbsql-%{version}-samba-%{_samba_ver}
+%setup -q -n pdbsql_3_2 -a1
 %patch0 -p1
 
 %build
+smbdir=$(ls -1d samba-*)
+cd $smbdir/source
+%configure
+%{__make} proto
+cd ../..
+
+mv aclocal.m4 acinclude.m4
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %configure \
-	--with-samba-dir=%{_includedir}/samba
+	--with-samba-dir=$(pwd)/$(ls -1d samba-*)
+
 %{__make}
 
 %install
@@ -87,12 +102,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n samba-pdb-mysql
 %defattr(644,root,root,755)
-%doc docs/mysql.dump docs/smb.conf.mysql
+%doc docs/*mysql*
 %attr(755,root,root) %{_libdir}/pdb/mysql.so
 
 %files -n samba-pdb-pgsql
 %defattr(644,root,root,755)
-%doc docs/pgsql.dump docs/smb.conf.pgsql
+%doc docs/*pgsql*
 %attr(755,root,root) %{_libdir}/pdb/pgsql.so
 
 %files -n samba-pdb-multi
