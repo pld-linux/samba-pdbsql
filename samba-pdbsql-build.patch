@@ -1,11 +1,11 @@
---- pdbsql-0.1-samba_3.0.23/Makefile.in~	2006-06-14 23:18:54.000000000 +0300
-+++ pdbsql-0.1-samba_3.0.23/Makefile.in	2006-07-25 11:19:04.200956844 +0300
+--- pdbsql-0.3.1-samba/Makefile.in~	2008-11-09 23:42:35.000000000 +0200
++++ pdbsql-0.3.1-samba/Makefile.in	2008-11-09 23:44:05.691817478 +0200
 @@ -11,7 +11,7 @@
  PGSQL_LIBS = @PGSQL_LIBS@
  SOURCEDIR = @SOURCEDIR@
  LIBDIR = @LIBDIR@
--CFLAGS = -Wall @CFLAGS@ -I$(SOURCEDIR) -I$(SOURCEDIR)/include -I$(SOURCEDIR)/ubiqx -I$(SOURCEDIR)/popt
-+CFLAGS = -Wall @CFLAGS@ -I$(SOURCEDIR) -I$(SOURCEDIR)/include -I$(SOURCEDIR)/ubiqx -I$(SOURCEDIR)/popt -I$(SOURCEDIR)/smbwrapper
+-CFLAGS = -Wall @CFLAGS@ -I$(SOURCEDIR) -I$(SOURCEDIR)/include -I$(SOURCEDIR)/ubiqx -I$(SOURCEDIR)/popt -I$(SOURCEDIR)/lib/replace -I$(SOURCEDIR)/tdb/include -I$(SOURCEDIR)/librpc
++CFLAGS = -Wall @CFLAGS@ -I$(SOURCEDIR) -I$(SOURCEDIR)/include -I$(SOURCEDIR)/ubiqx -I$(SOURCEDIR)/popt -I$(SOURCEDIR)/lib/replace -I$(SOURCEDIR)/tdb/include -I$(SOURCEDIR)/librpc -I$(SOURCEDIR)/smbwrapper
  
  all: $(addsuffix .$(SHLIBEXT), $(modules))
  
