@@ -74,7 +74,7 @@ Backend Samby wczytujący wiele backendów passdb.
 
 %prep
 %setup -q -n pdbsql_3_2 -a1
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 smbdir=$(ls -1d samba-*)
